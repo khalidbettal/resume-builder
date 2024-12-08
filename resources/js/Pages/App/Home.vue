@@ -10,7 +10,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
       class="min-h-[calc(100vh-var(--header-height))] flex flex-col justify-center items-center text-center mx-auto gap-8 flex-wrap font-bold p-4  text-slate-100"
     >
       <div class="leading-normal">
-        <h2 class="mb-2 text-5xl max-sm:text-4xl font-extrabold text-gray-200">
+        <h2 class="mb-2 text-5xl max-sm:text-4xl font-extrabold text-gray-300">
           Create your  
           <span
             class="text-nowrap text-transparent bg-gradient-to-bl from-emerald-600 to-emerald-400 bg-clip-text"
@@ -21,7 +21,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
           and own your data
           <span class="text-transparent bg-gradient-to-br from-emerald-600 to-emerald-400 bg-clip-text">.</span>
         </h2>
-        <p class="mb-4 font-light text-gray-300 max-w-prose mx-auto max-sm:text-lg py-2">
+        <p class="mb-4 font-light text-gray-400 max-w-prose mx-auto max-sm:text-lg py-2">
           CvFy is an open-sourced multilingual and privacy-friendly resume builder that helps you create your CV and download it in PDF in just a few minutes.
         </p>
         <AppLink

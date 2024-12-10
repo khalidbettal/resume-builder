@@ -10,7 +10,7 @@ import AppSwitchLang from '@/Components/App/AppSwitchLang.vue';
       <div class="flex gap-4 items-center">
         <AppSwitchLang />
         <AppLink :href="route('templates.show')" cta>
-          Create CV
+          {{ $t('app.create-cv') }}
         </AppLink>
       </div>
     </nav>

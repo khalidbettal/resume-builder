@@ -11,24 +11,24 @@ import AppLayout from '@/Layouts/AppLayout.vue';
     >
       <div class="leading-normal">
         <h2 class="mb-2 text-5xl max-sm:text-4xl font-extrabold text-gray-300">
-          Create your  
+          {{$t('app.hero-title-1')}}
           <span
             class="text-nowrap text-transparent bg-gradient-to-bl from-emerald-600 to-emerald-400 bg-clip-text"
           >
-            CV for free
+            {{ $t('app.hero-title-2') }}
           </span>
           <br />
-          and own your data
+          {{ $t('app.hero-title-3') }}
           <span class="text-transparent bg-gradient-to-br from-emerald-600 to-emerald-400 bg-clip-text">.</span>
         </h2>
         <p class="mb-4 font-light text-gray-400 max-w-prose mx-auto max-sm:text-lg py-2">
-          CvFy is an open-sourced multilingual and privacy-friendly resume builder that helps you create your CV and download it in PDF in just a few minutes.
+          {{ $t('app.hero-paragraph') }}
         </p>
         <AppLink
           :href="route('templates.show')"
           cta
         >
-          <span>Get Started</span>
+          <span>{{ $t('app.get-started') }}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

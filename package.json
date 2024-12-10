@@ -19,6 +19,6 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "vue-i18n": "^10.0.5"
+        "laravel-vue-i18n": "^2.7.8"
     }
 }

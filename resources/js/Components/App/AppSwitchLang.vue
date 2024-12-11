@@ -1,71 +1,87 @@
-<script  setup>
-import { ref } from 'vue';
+<script setup>
+import { ref, computed } from 'vue';
+import { router as inertiaRouter } from '@inertiajs/vue3';
 
-// Define locales and the selected language
-const locales = [
-  { code: 'en', name: 'English' },
-  { code: 'fr', name: 'Français' },
-  { code: 'es', name: 'Español' },
+// Define available languages
+const languages = [
+  { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
+  { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w20/fr.png' },
+  { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w20/es.png' },
+  { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w20/ma.png' },
 ];
-const selected = ref('en');
+
+// Props to get the current locale
+const props = defineProps(['currentLocale']);
+
+// Reactive variables
 const isDropdownOpen = ref(false);
 
-// Handle language selection
-function selectLanguage(code) {
-  if (locales.some(l => l.code === code)) {
-    selected.value = code;
-    isDropdownOpen.value = false; // Close the dropdown
-  }
-}
+// Computed for the current language
+const currentLanguage = computed(() => {
+    const locale = props.currentLocale || localStorage.getItem('locale') || 'en';
+    return languages.find(lang => lang.code === locale) || languages[0];
+});
 
-// Toggle dropdown visibility
+
+// Function to toggle dropdown visibility
 function toggleDropdown() {
   isDropdownOpen.value = !isDropdownOpen.value;
 }
+
+// Function to get the updated URL for a selected language
+function getURL(lang) {
+  const currentUrl = new URL(window.location.href);
+  return currentUrl.pathname.replace(`/${props.currentLocale}`, `/${lang.code}`);
+}
+
+async function changeLanguage(lang) {
+    await inertiaRouter.post(`/locale-switch/${lang.code}`, {}, {
+        preserveScroll: true,
+        onSuccess: () => {
+            localStorage.setItem('locale', lang.code);
+            window.location.reload();
+        },
+    });
+}
+
+
+
+
+
 </script>
 
 <template>
   <div class="relative inline-block text-left">
-    <!-- Button with globe icon and selected language -->
+    <!-- Trigger Button -->
     <button
       class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400"
       @click="toggleDropdown"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-5 h-5 mr-2 text-gray-600"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-        />
+      <img :src="currentLanguage.flag" alt="" class="w-4 h-4 mr-2">
+      <span class="uppercase">{{ currentLanguage.code }}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-2">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
       </svg>
-      <span class="uppercase">{{ selected }}</span>
     </button>
 
-    <!-- Dropdown menu -->
+    <!-- Dropdown Menu -->
     <div
       v-if="isDropdownOpen"
-      class="absolute z-20 w-20 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"
+      class="absolute right-0 z-20 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg"
     >
       <ul class="py-1 text-sm text-gray-700">
         <li
-          v-for="loc in locales"
-          :key="loc.code"
-          @click="selectLanguage(loc.code)"
-          class="px-4 py-2 cursor-pointer hover:bg-emerald-100"
-        >
-          <span class="uppercase ">{{ loc.code }}</span>
-          <!-- <span>{{ loc.name }}</span> -->
-        </li>
+  v-for="lang in languages"
+  :key="lang.code"
+  class="flex items-center px-4 py-2 cursor-pointer hover:bg-emerald-100"
+  :class="{ 'bg-emerald-200': lang.code === currentLanguage.code }"
+  @click="changeLanguage(lang)"
+>
+  <img :src="lang.flag" alt="" class="w-4 h-4 mr-2">
+  {{ lang.name }}
+</li>
+
       </ul>
     </div>
   </div>
 </template>
-
-

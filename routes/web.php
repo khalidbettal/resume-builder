@@ -1,9 +1,20 @@
 <?php
 
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+// routes/web.php
+
+Route::post('/locale-switch/{lang}', [LocaleController::class, 'localeSwitch'])->name('locale.switch');
+
+
+Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+{
+   /** OTHER PAGES THAT SHOULD NOT BE LOCALIZED **/
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -33,3 +44,7 @@ Route::get('/template', function () {
 })->name('templates.show');
 
 require __DIR__.'/auth.php';
+
+});
+
+

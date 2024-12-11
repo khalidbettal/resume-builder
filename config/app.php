@@ -1,5 +1,7 @@
 <?php
 
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 return [
 
     /*
@@ -78,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'zh',
+    'locale' => 'en',
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 

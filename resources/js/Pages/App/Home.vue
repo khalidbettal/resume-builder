@@ -49,7 +49,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         </AppLink>
       </div>
       <AppHeroImg />
-      <div>{{ $page.props.currentLocale }}</div>
       <div class="text-xs font-light">
         Made with ♥️ by
         <a

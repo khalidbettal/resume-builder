@@ -7,11 +7,11 @@ const isDropdownOpen = ref(false);
 
 
 const languages = [
-  { code: 'en', name: 'English', flag: 'https://flagcdn.com/w20/gb.png' },
-  { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w20/fr.png' },
-  { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w20/es.png' },
-  { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w20/ma.png' },
-  { code: 'zh', name: '中文', flag: 'https://flagcdn.com/w20/cn.png' },
+  { code: 'en', name: 'En', flag: 'https://flagcdn.com/w20/gb.png' },
+  { code: 'fr', name: 'Fr', flag: 'https://flagcdn.com/w20/fr.png' },
+  { code: 'es', name: 'Esp', flag: 'https://flagcdn.com/w20/es.png' },
+  { code: 'ar', name: 'Ar', flag: 'https://flagcdn.com/w20/ma.png' },
+  { code: 'zh', name: 'Zh', flag: 'https://flagcdn.com/w20/cn.png' },
 ];
 
 // Get current locale from Inertia props
@@ -43,7 +43,7 @@ async function changeLanguage(lang) {
   <div class="relative inline-block text-left">
     <!-- Button to open the language dropdown -->
     <button
-      class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400"
+      class="flex items-center sm:px-4 px-2 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400"
       @click="toggleDropdown"
     >
       <img :src="languages.find(lang => lang.code === props.currentLocale).flag" alt="Current Language" class="w-4 h-4 mr-2">

@@ -8,13 +8,13 @@ import { Link } from '@inertiajs/vue3';
   <h1>
     <Link
       :href="route('home')"
-      class="bg-none font-extrabold sm:text-2xl font-logo uppercase tracking-widest"
+      class="bg-none font-extrabold sm:text-2xl text-sm font-logo uppercase tracking-widest"
       active-class="bg-none"
     >
       <span
-        class="text-transparent bg-gradient-to-br from-emerald-700 to-emerald-400 bg-clip-text hover:opacity-80"
+        class="text-transparent bg-gradient-to-br from-emerald-700 to-emerald-400 bg-clip-text hover:opacity-80 "
       >
-        My App
+        MyApp
       </span>
     </Link>
   </h1>

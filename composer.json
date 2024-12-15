@@ -13,8 +13,10 @@
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
+        "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
         "mcamara/laravel-localization": "^2.2",
+        "socialiteproviders/google": "^4.1",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
